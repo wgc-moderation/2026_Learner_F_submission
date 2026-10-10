@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Aramico</title>
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="icon" type="image/png"
+        href="{{ url_for('static', filename='images/aramico-icon.png') }}?v=2">
+</head>
+<body class="home-page">
+    <header>
+        <h1>aramico</h1>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/customers">Customers</a></li>
+            <li><a href="/companies">Companies</a></li>
+            <li><a href="/sales">Sales</a></li>
+        </ul>
+
+        <!-- Submits a protected request to end the login session. -->
+        <form id="logout-form" method="POST"
+              action="{{ url_for('logout') }}" class="logout-form">
+            <input type="hidden" name="csrf_token"
+                   value="{{ csrf_token() }}">
+            <button type="submit" form="logout-form">Log out</button>
+        </form>
+    </nav>
+
+    <!-- Fills the remaining screen space with the background video. -->
+    <main class="home-hero">
+        <video class="home-video" autoplay muted loop playsinline
+               preload="auto" aria-hidden="true">
+            <source
+                src="{{ url_for('static', filename='videos/aramico-background.mp4') }}"
+                type="video/mp4">
+        </video>
+
+        <!-- Darkens the video so the white text stays readable. -->
+        <div class="home-overlay"></div>
+
+        <div class="home-content">
+            <h2>Welcome to Aramico</h2>
+            <p class="home-intro">
+                Explore information about our companies, customers, and sales.
+            </p>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; Saba Dourandish Yazdi 2026</p>
+    </footer>
+
+    <script>
+        // Starts the text animation when the video begins playing.
+        const video = document.querySelector(".home-video");
+        const hero = document.querySelector(".home-hero");
+
+        video.addEventListener("playing", function () {
+            hero.classList.add("video-playing");
+        }, { once: true });
+    </script>
+</body>
+</html>

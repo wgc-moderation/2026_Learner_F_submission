@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>aramico</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="icon" type="image/png"
+        href="{{ url_for('static', filename='images/aramico-icon.png') }}?v=2">
+</head>
+<body>
+    <h1>Welcome to aramico!</h1>
+    <nav>
+        <ul>
+            <li>
+                <a href="/">Home</a>
+            </li>
+            <li>
+                <a href="/customers">Customers</a>
+            </li>
+            <li>
+                <a href="/companies">Companies</a>
+            </li>
+            <li>
+                <a href="/sales">Sales</a>
+            </li>
+        </ul>
+        <!-- Sends the company search term to Flask through the URL. -->
+        <form method="GET">
+            <input
+                aria-label="Search companies by name"
+                type="text"
+                id="search"
+                name="search"
+                value="{{ search or '' }}"
+                placeholder="Enter company name">
+            <button type="submit">Search</button>
+        </form>
+    </nav>
+    <h1 id="page_name">Companies</h1>
+    <table>
+        <thead>
+            <tr>
+                <th scope="col">Logo</th>
+
+                {% for label, key, next_direction in headings %}
+                <th scope="col">
+                    <a href="{{ url_for('render_companies',
+                                        search=search,
+                                        sort=key,
+                                        direction=next_direction) }}">
+                        {{ label }}
+                    </a>
+                </th>
+                {% endfor %}
+            </tr>
+        </thead>
+        <tbody>
+            {% for company in companies %}
+            <tr>
+                <td class="logo-column">
+                    {% if company[4] %}
+                        <img
+                            src="{{ url_for('static', filename='images/' + company[4] + '.png') }}"
+                            alt="{{ company[1] }} logo"
+                            class="company-logo">
+                    {% else %}
+                        No logo
+                    {% endif %}
+                </td>
+
+                <td>{{ company[0] }}</td>
+                <td>{{ company[1] }}</td>
+                <td>{{ company[2] }}</td>
+                <td>{{ company[3] }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <footer>
+        <p>&copy; Saba Dourandish Yazdi 2026</p>
+    </footer>
+</body>
+</html>

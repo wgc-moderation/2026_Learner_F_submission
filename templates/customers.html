@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>aramico</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="icon" type="image/png"
+        href="{{ url_for('static', filename='images/aramico-icon.png') }}?v=2">
+</head>
+<body>
+    <h1>Welcome to aramico!</h1>
+    <nav>
+        <ul>
+            <li>
+                <a href="/">Home</a>
+            </li>
+            <li>
+                <a href="/customers">Customers</a>
+            </li>
+            <li>
+                <a href="/companies">Companies</a>
+            </li>
+            <li>
+                <a href="/sales">Sales</a>
+            </li>
+        </ul>
+        <!-- Sends the customer search term to the customers route. -->
+        <form method="GET" action="/customers">
+            <input
+                aria-label="Search customers by first name, last name, or email"
+                type="text"
+                id="search"
+                name="search"
+                value="{{ search or '' }}"
+                placeholder="Enter first name, last name, or email">
+            <button type="submit">Search</button>
+        </form>
+    </nav>
+
+    <h1 id="page_name">Customers</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <!-- Creates clickable headings for sorting. -->
+                {% for label, key, next_direction in headings %}
+                <th scope="col">
+                    <a href="{{ url_for('render_customers',
+                                        search=search,
+                                        sort=key,
+                                        direction=next_direction) }}">
+                        {{ label }}
+                    </a>
+                </th>
+                {% endfor %}
+            </tr>
+        </thead>
+
+        <tbody>
+            <!-- Displays one row for each customer. -->
+            {% for customer in customers %}
+            <tr>
+                <!-- Displays each value in its own cell. -->
+                {% for detail in customer %}
+                <td>{{ detail }}</td>
+                {% endfor %}
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <footer>
+        <p>&copy; Saba Dourandish Yazdi 2026</p>
+    </footer>
+</body>
+</html>

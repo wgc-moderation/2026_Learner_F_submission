@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>aramico</title>
+    <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="icon" type="image/png"
+        href="{{ url_for('static', filename='images/aramico-icon.png') }}?v=2">
+</head>
+<body>
+    <h1>Welcome to aramico!</h1>
+    <nav>
+        <ul>
+            <li>
+                <a href="/">Home</a>
+            </li>
+            <li>
+                <a href="/customers">Customers</a>
+            </li>
+            <li>
+                <a href="/companies">Companies</a>
+            </li>
+            <li>
+                <a href="/sales">Sales</a>
+            </li>
+        </ul>
+        <!-- Sends the entered sale ID to Flask through the URL. -->
+        <form method="GET">
+            <input
+                aria-label="Search sales by sale ID"
+                type="text"
+                id="search"
+                name="search"
+                value="{{ search or '' }}"
+                placeholder="Enter sale ID">
+            <button type="submit">Search</button>
+        </form>
+    </nav>
+    <h1 id="page_name">Sales</h1>
+ 
+    <table>
+        <thead>
+            <tr>
+                <!-- Creates clickable headings for sorting. -->
+                {% for label, key, next_direction in headings %}
+                <th scope="col">
+                    <a href="{{ url_for('render_sales',
+                                        search=search,
+                                        sort=key,
+                                        direction=next_direction) }}">
+                        {{ label }}
+                    </a>
+                </th>
+                {% endfor %}
+            </tr>
+        </thead>
+
+        <tbody>
+            <!-- Displays one row for each sale. -->
+            {% for sale in sales %}
+            <tr>
+                <!-- Displays the sale ID, customer name, company and date. -->
+                <td>{{ sale[0] }}</td>
+                <!-- Opens the customers page with this customer's first name searched. -->
+                <td>
+                    <a href="{{ url_for('render_customers', search=sale[1]) }}">
+                        {{ sale[1] }} {{ sale[2] }}
+                    </a>
+                </td>
+                <td>{{ sale[3] }}</td>
+                <td>{{ sale[4] }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <footer>
+        <p>&copy; Saba Dourandish Yazdi 2026</p>
+    </footer>
+</body>
+</html>

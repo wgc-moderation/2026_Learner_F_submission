@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Staff Login | Aramico</title>
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="icon" type="image/png"
+        href="{{ url_for('static', filename='images/aramico-icon.png') }}?v=2">
+</head>
+<body class="login-page">
+
+    <!-- Play the existing video behind the login form. -->
+    <video class="login-video" autoplay muted loop playsinline
+           aria-hidden="true">
+        <source
+            src="{{ url_for('static', filename='videos/aramico-background.mp4') }}"
+            type="video/mp4">
+    </video>
+    <div class="login-overlay"></div>
+
+    <main class="login-container">
+        <section class="login-card" aria-labelledby="login-title">
+            <!-- Displays the original Aramico logo. -->
+            <img class="login-brand"
+                src="{{ url_for('static', filename='images/aramico.png') }}"
+                alt="Aramico">            <h1 id="login-title">Staff login</h1>
+            <p class="login-intro">
+                Access our companies, customers and sales.
+            </p>
+
+            {% if error %}
+            <p class="login-error" role="alert">{{ error }}</p>
+            {% endif %}
+
+            <form method="POST" action="{{ url_for('login') }}"
+                  class="login-form">
+                <input type="hidden" name="csrf_token"
+                       value="{{ csrf_token() }}">
+
+                <div class="login-field">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" name="username"
+                           value="{{ username }}"
+                           autocomplete="username" required>
+                </div>
+
+                <div class="login-field">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password"
+                           autocomplete="current-password" required>
+                </div>
+
+                <button type="submit">Log in</button>
+            </form>
+
+            <p class="login-note">For authorised staff only.</p>
+        </section>
+    </main>
+
+    <footer class="login-footer">
+        <p>&copy; Saba Dourandish Yazdi 2026</p>
+    </footer>
+</body>
+</html>
