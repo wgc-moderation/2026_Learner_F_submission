@@ -1,0 +1,559 @@
+/* General */
+
+body {
+    font-family: 'fonts/alte-haas-grotesk-display', sans-serif;
+    margin: 0;
+    min-height: 850px;
+    display: flex;
+    flex-direction: column;
+    background-color: #fdfeff;
+    color: #333333;
+}
+
+main {
+    flex: 1;
+}
+
+/* Main heading */
+
+h1 {
+    background-color: #040078;
+    color: rgb(251, 251, 253);
+    margin: 0;
+    padding: 20px;
+    text-align: center;
+    font-size: 100px;
+}
+
+
+/* Subheadings */
+
+h2 {
+    margin: 0;
+    padding: 15px;
+    text-align: center;
+    background-color: #0c1748;
+    color: white;
+}
+
+/* Paragraphs */
+
+p {
+    text-align: center;
+    margin: 20px;
+}
+
+/* Navigation */
+
+nav {
+    background-color: #000658;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding:20px;
+}
+
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+nav li {
+    margin: 0;
+}
+
+nav a {
+    display: block;
+    padding: 15px 25px;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+nav a:hover {
+    background-color: #3b3d87;
+}
+
+#page_name {
+    text-align: center;
+    font-size: 36px;
+    color: #ebecf0;
+}
+
+.search-form {
+    display: flex;
+    justify-content: center;
+    margin: 20px;
+}
+
+/* Keeps the background video inside the hero section. */
+.hero {
+    position: relative;
+    height: 450px;
+    overflow: hidden;
+}
+
+/* Fills the hero section with the video, cropping it to fit. */
+.hero-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Hero Text */
+.hero-video {
+    position: absolute;
+}
+
+/* Positions the welcome text over the background video. */
+.hero-content {
+    position: relative;
+    padding-top: 140px;
+    color: white;
+    text-align: center;
+}
+
+.hero-content h2 {
+    padding: 0;
+    background: none;
+    font-size: 46px;
+}
+
+/* Tables */
+
+.logo-column {
+    width: 120px;
+    text-align: center;
+}
+
+/* Gives logos a consistent display size without stretching them. */
+.company-logo {
+    width: 90px;
+    height: 60px;
+    object-fit: contain;
+}
+
+table {
+    width: 90%;
+    margin: 30px auto;
+    border-collapse: collapse;
+    background-color: white;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}
+
+th {
+    background-color: #070066;
+    color: white;
+    padding: 12px;
+    text-align: left;
+}
+
+/* Keeps sorting links white, including after they have been clicked. */
+th a,
+th a:hover,
+th a:visited {
+    color: white;
+}
+
+td {
+    border: 1px solid #ddd;
+    padding: 12px;
+}
+
+/* Gives alternate rows a different background to make them easier to follow. */
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+/* Highlights the row the user's mouse is over. */
+tr:hover {
+    background-color: #e6f0ff;
+}
+
+/* Search forms in the navigation. */
+nav form[method="GET"] {
+    flex-shrink: 0;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+    width: 500px;
+    margin: 0;
+}
+
+/* Places the label above the search input. */
+nav form[method="GET"] label {
+    width: 100%;
+    color: white;
+    font-size: 14px;
+    text-align: left;
+}
+
+/* Styles the input using the website's existing font. */
+nav form[method="GET"] input[type="text"] {
+    box-sizing: border-box;
+    flex: 1;
+    min-width: 0;
+    width: 240px;
+    padding: 11px 14px;
+    font: inherit;
+    color: #172b42;
+    background: white;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+}
+
+/* Highlights the input when it is selected. */
+nav form[method="GET"] input[type="text"]:focus {
+    outline: 2px solid #abd5ff;
+    outline-offset: 2px;
+}
+
+/* Matches the Search button to the navy navigation. */
+nav form[method="GET"] button {
+    padding: 11px 18px;
+    font: inherit;
+    font-weight: bold;
+    color: white;
+    background: #000658;
+    border: 1px solid #abd5ff;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+nav form[method="GET"] button:hover {
+    background: #3b3d87;
+}
+
+/* Footer */
+
+footer {
+    background-color: #000366;
+    color: white;
+    text-align: center;
+    padding: 15px;
+    margin-top: auto;
+}
+
+/* Stacks navigation links and widens tables on screens up to 768px. */
+@media (max-width: 768px) {
+    nav ul {
+        flex-direction: column;
+    }
+
+    table {
+        width: 100%;
+    }
+}
+
+/* Give the login page a full-screen blue background. */
+.login-page {
+    min-height: 100vh;
+    min-height: 100dvh;
+    background: #003366;
+    isolation: isolate;
+}
+
+/* Keep the video and overlay covering the screen. */
+.login-video,
+.login-overlay {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+/* Fill the background with the video without stretching it. */
+.login-video {
+    object-fit: cover;
+    z-index: -2;
+}
+
+/* Darken the video so the login card stands out. */
+.login-overlay {
+    background: rgba(0, 25, 51, 0.65);
+    z-index: -1;
+}
+
+/* Centre the login card and leave space around it. */
+.login-container {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 48px 20px;
+}
+
+/* Style the white card containing the login form. */
+.login-card {
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 440px;
+    padding: 40px;
+    background: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    color: #172b42;
+}
+
+/* Sizes the logo without stretching it. */
+.login-card .login-brand {
+    display: block;
+    width: 170px;
+    max-width: 100%;
+    height: auto;
+    margin: 0 0 24px;
+}
+
+/* Override the large heading styles used on other pages. */
+.login-card h1 {
+    margin: 0;
+    padding: 0;
+    background: none;
+    color: #172b42;
+    font-size: 28px;
+    text-align: left;
+}
+
+/* Add spacing and readable text below the heading. */
+.login-card .login-intro {
+    margin: 12px 0 28px;
+    text-align: left;
+    line-height: 1.6;
+    color: #536174;
+}
+
+/* Stack the login fields and override the search-form styles. */
+.login-card .login-form {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 22px;
+    box-sizing: border-box;
+    width: 100%;
+    max-width: none;
+    margin: 0;
+    padding: 0;
+    background: none;
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+}
+
+/* Place each label above its input. */
+.login-field {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.login-field label {
+    font-size: 14px;
+    color: #172b42;
+}
+
+/* Keep inputs inside the card and use the existing font. */
+.login-field input {
+    box-sizing: border-box;
+    width: 100%;
+    min-width: 0;
+    padding: 13px 14px;
+    font: inherit;
+    color: #172b42;
+    background: #f7f9fc;
+    border: 1px solid #aebdce;
+    border-radius: 7px;
+}
+
+/* Style the login button using the website's blue colour. */
+.login-form button {
+    padding: 14px;
+    font: inherit;
+    color: white;
+    background: #19007f;
+    border: none;
+    border-radius: 7px;
+    cursor: pointer;
+}
+
+/* Darken the button when the mouse is over it. */
+.login-form button:hover {
+    background: #003366;
+}
+
+/* Show which input or button is selected using the keyboard. */
+.login-field input:focus-visible,
+.login-form button:focus-visible {
+    outline: 3px solid #00509e;
+    outline-offset: 3px;
+}
+
+/* Make an incorrect-login message clearly visible. */
+.login-card .login-error {
+    margin: 0 0 20px;
+    padding: 12px;
+    text-align: left;
+    line-height: 1.5;
+    color: #8c2020;
+    background: #fff0f0;
+    border: 1px solid #efc1c1;
+    border-radius: 7px;
+}
+
+/* Style the staff-only notice below the form. */
+.login-card .login-note {
+    margin: 24px 0 0;
+    font-size: 12px;
+    color: #536174;
+}
+
+/* Let the video show behind the footer. */
+.login-page .login-footer {
+    background: transparent;
+    padding: 16px;
+    color: white;
+}
+
+.login-footer p {
+    margin: 0;
+    font-size: 12px;
+}
+
+/* Reduce spacing so the card fits on smaller screens. */
+@media (max-width: 480px) {
+    .login-container {
+        padding: 24px 16px;
+    }
+
+    .login-card {
+        padding: 28px 24px;
+    }
+}
+
+/* Hide the moving background for users who request reduced motion. */
+@media (prefers-reduced-motion: reduce) {
+    .login-video {
+        display: none;
+    }
+}
+
+/* Give logout its own style instead of the search-form style. */
+nav .logout-form {
+    width: auto;
+    max-width: none;
+    margin: 0;
+    padding: 0;
+    background: none;
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+}
+
+.logout-form button {
+    font: inherit;
+    color: white;
+    background: #2000d6;
+    border: 1px solid white;
+    border-radius: 6px;
+    padding: 10px 18px;
+    cursor: pointer;
+}
+/* Lets the home page fill the browser's height. */
+body.home-page {
+    min-height: 100vh;
+    min-height: 100dvh;
+}
+
+/* Keeps the header and navigation above the video. */
+.home-page header,
+.home-page nav {
+    position: relative;
+    z-index: 2;
+    flex-shrink: 0;
+}
+
+/* Fills the space below the navigation with the video area. */
+.home-hero {
+    position: relative;
+    flex: 1;
+    min-height: 420px;
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+    background-color: #003366;
+}
+
+/* Covers the whole video area without stretching the footage. */
+.home-video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Adds shading without blocking clicks. */
+.home-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        to bottom,
+        rgba(0, 15, 35, 0.2),
+        rgba(0, 15, 35, 0.65)
+    );
+    pointer-events: none;
+}
+
+/* Centres the welcome text above the video. */
+.home-content {
+    position: relative;
+    z-index: 1;
+    max-width: 800px;
+    padding: 60px 24px;
+    text-align: center;
+    color: white;
+}
+
+.home-content h2 {
+    margin: 0;
+    padding: 0;
+    background: none;
+    color: white;
+    font-size: clamp(32px, 5vw, 60px);
+    line-height: 1.15;
+}
+
+.home-content .home-intro {
+    margin: 24px 0 0;
+    color: white;
+    font-size: clamp(16px, 2vw, 22px);
+    line-height: 1.6;
+}
+
+/* Waits three seconds after playback starts, then reveals the sentence. */
+.video-playing .home-intro {
+    animation: slide-up 2s ease-out 3s both;
+}
+
+/* Slowly moves the text upwards while fading it in. */
+@keyframes slide-up {
+    from {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Shows the text without animation for people who reduce motion. */
+@media (prefers-reduced-motion: reduce) {
+    .video-playing .home-intro {
+        animation: none;
+    }
+}
