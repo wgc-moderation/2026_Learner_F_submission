@@ -3,8 +3,8 @@ A website for my dad's business
 
 
 # TEACHER NOTES
-had to run setup_login to create account, no instructions from student
+run setup_login.py to create account, no instructions from student
 
+// I created this account
 //Account name: test
-
 //Password: 1234567891011
